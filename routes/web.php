@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('Index');
+Route::view('/kategori','category');
+Route::view('/urun','product');
+Route::view('/sepet','basket');
