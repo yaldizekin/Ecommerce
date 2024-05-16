@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('Index');
-Route::view('/kategori','category');
-Route::view('/urun','product');
-Route::view('/sepet','basket');
+Route::get('/kategori/{slug_categoryName}', 'App\Http\Controllers\CategoryController@category')->name('Category');
+Route::get('/urun/{slug_productName}', 'App\Http\Controllers\ProductController@product')->name('Product');
+Route::get('/sepet', 'App\Http\Controllers\BasketController@basket')->name('Basket');
+Route::get('/odeme', 'App\Http\Controllers\PaymentController@payment')->name('Payment');
+Route::get('/siparisler', 'App\Http\Controllers\OrderController@order')->name('Order');
+Route::get('/siparisler/{id}', 'App\Http\Controllers\OrderController@detail')->name('Card');
+
+Route::group(['prefix'=>'user'], function(){
+Route::get('/kayit', 'App\Http\Controllers\UserController@register_form')->name('user.Register');
+Route::get('/giris', 'App\Http\Controllers\UserController@login_form')->name('user.Login');
+});
