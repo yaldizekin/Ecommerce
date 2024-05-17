@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Anasayfa')
 
+
 @section('content')
 
         <div class="row">
@@ -8,15 +9,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Kategoriler</div>
                     <div class="list-group categories">
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Kategori</a>
-                    </div>
+                        @foreach($categories as $category)
+                        <a href="{{ route ('category', $category->slug) }}" class="list-group-item">
+                            <i class="fa fa-arrow-circle-o-right"></i> 
+                            {{$category->category_name}}
+                        </a>
+                            @endforeach
+                         </div>
                 </div>
             </div>
             <div class="col-md-6">

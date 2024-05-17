@@ -1,24 +1,41 @@
 @extends('layouts.master')
-@section('title', 'Kategori')
+@section('title', $category->category_name)
 
 
 @section('content')
 <div class="">
-         <ol class="breadcrumb">
-            <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">Kategori</a></li>
-            <li class="active">Kategori</li>
-        </ol>
+<div class="container my-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+      <li class="breadcrumb-item">
+        <a class="link-body-emphasis" href="{{route('index')}}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+</svg>
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class="link-body-emphasis fw-semibold text-decoration-none" href="#"> {{$category->category_name}}</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+       {{$category->category_name}}
+      </li>
+    </ol>
+  </nav>
+</div>
         <div class="row">
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Kategori Adı</div>
+                  
                     <div class="panel-body">
-                        <h3>Alt Kategoriler</h3>
+                      
                         <div class="list-group categories">
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
-                            <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
+                        @foreach($subcategories as $subcategory)
+                        <a href="{{ route ('category', $subcategory->slug) }}" class="list-group-item">
+                            <i class="fa fa-arrow-circle-o-right"></i> 
+                            {{$subcategory->category_name}}
+                        </a>
+                            @endforeach
                         </div>
                         <h3>Fiyat Aralığı</h3>
                         <form>
