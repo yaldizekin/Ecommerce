@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('index');
+Route::post('/ara', 'App\Http\Controllers\ProductController@search')->name('search');
+Route::get('/ara', 'App\Http\Controllers\ProductController@search')->name('search');
+
 Route::get('/kategori/{slug_categoryName}', 'App\Http\Controllers\CategoryController@category')->name('category');
 Route::get('/urun/{slug_productName}', 'App\Http\Controllers\ProductController@product')->name('product');
 Route::get('/sepet', 'App\Http\Controllers\BasketController@basket')->name('basket');

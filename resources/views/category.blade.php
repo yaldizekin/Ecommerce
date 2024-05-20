@@ -15,11 +15,13 @@
         </a>
       </li>
       <li class="breadcrumb-item">
-        <a class="link-body-emphasis fw-semibold text-decoration-none" href="#"> {{$category->category_name}}</a>
+        <a class="link-body-emphasis fw-semibold text-decoration-none" href="{{ route ('category', $category->slug) }}"> {{$category->category_name}}</a>
       </li>
+      @if(count($subcategories)>0)
       <li class="breadcrumb-item active" aria-current="page">
        {{$category->category_name}}
       </li>
+      @endif
     </ol>
   </nav>
 </div>
@@ -64,31 +66,17 @@
                     <a href="#" class="btn btn-default">Yeni Ürünler</a>
                     <hr>
                     <div class="row">
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/1"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
+                        @foreach($products as $product)
+
+                        <div class="col-md-3 ">
+                            <a href="{{ route ('product', $product->slug) }}"><img src="https://picsum.photos/400/400">fghjkl</a>
+                            <p><a href="{{ route ('product', $product->slug) }}">{{$product->product_name}}</a></p>
+                            <p class="price">{{$product->price}}</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/2"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/3"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        <div class="col-md-3 product">
-                            <a href="#"><img src="http://lorempixel.com/400/400/food/4"></a>
-                            <p><a href="#">Ürün adı</a></p>
-                            <p class="price">129 ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
+                        @endforeach
                     </div>
+                    {{products->links()}}
                 </div>
             </div>
         </div>

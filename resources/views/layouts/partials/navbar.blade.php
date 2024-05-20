@@ -12,8 +12,11 @@
           <li><a href="/sepet" class="nav-link px-2 link-dark">Sepetim</a></li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{{route('search')}}" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+        
+          <input type="search" class="form-control" placeholder="Search..." name="searched" aria-label="Search" value="{{old('searched')}}">
         </form>
 
         <div class="dropdown text-end">
