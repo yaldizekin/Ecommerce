@@ -4,6 +4,12 @@
 
 @section('content')
 
+@if(session()->has('message'))
+<div class="alert alert-{{session('message_type')}}">
+    {{session('message')}}
+
+</div>
+@endif
         <div class="row">
             <div class="col-md-3">
                 <div class="panel panel-default">
@@ -20,13 +26,7 @@
             </div>
             <div class="col-md-6">
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                        @for($i=0; $i < count($products_slider);$i++)
-
-                        <button data-target="#carousel-example-generic" data-slide-to="{{$i}}" class="{{$i==0 ? 'active' :' ' }}"></button>
-
-                     @endfor
-                 </div>
+            
                  <div class="carousel-inner">                    
                         @foreach($products_slider as $index=>$product)
                         <div class="carousel-item {{$index==0 ? 'active' : ''}}"data-bs-interval="10000">

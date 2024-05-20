@@ -26,5 +26,8 @@ class User extends Authenticatable
         'activation_code'
     ];
 
+    public function getAuthPassword() {
+        return $this->password;
+    }
    
 }
