@@ -4,21 +4,21 @@
 
 @section('content')
 
-<div class="container">
+
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="row mb-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">Kaydol</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="#">
+@include('layouts.partials.error')
+                        <form  role="form" method="POST" action="{{route('user.register')}} ">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
     
-                            <div class="form-group has-error">
-                                <label for="name" class="col-md-4 control-label">Kullanıcı Adı</label>
+                            <div class="form-group">
+                                <label for="fullname" class="col-md-4 control-label">Ad Soyad </label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
-                                    <span class="help-block">
-                                        <strong>Kullanıcı adı boş bırakılamaz</strong>
-                                    </span>
+                                    <input id="fullname" type="text" class="form-control" name="fullname" value="" required autofocus>
+                                   
                                 </div>
                             </div>
     
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
   
 
