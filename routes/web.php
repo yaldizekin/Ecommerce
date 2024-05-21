@@ -1,8 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
-
+Route::namespace('App\Http\Controllers\Yonetim')->group(function(){
+    Route::prefix('yonetim')->group(function(){
+        Route::get('/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+    });
+});
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('index');
 Route::post('/ara', 'App\Http\Controllers\ProductController@search')->name('search');
@@ -11,7 +16,21 @@ Route::get('/ara', 'App\Http\Controllers\ProductController@search')->name('searc
 Route::get('/kategori/{slug_categoryName}', 'App\Http\Controllers\CategoryController@category')->name('category');
 Route::get('/urun/{slug_productName}', 'App\Http\Controllers\ProductController@product')->name('product');
 
-Route::get('/sepet', 'App\Http\Controllers\BasketController@basket')->name('basket');
+Route::group(['prefix'=>'sepet'], function(){
+Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
+Route::post('/ekle', 'App\Http\Controllers\BasketController@add')->name('basket.add');
+Route::delete('/kaldir/{rowid}', 'App\Http\Controllers\BasketController@remove')->name('remove.basket');
+Route::delete('/bosalt', 'App\Http\Controllers\BasketController@empty')->name('basket.empty');
+Route::patch('/guncelle/{rowid}', 'App\Http\Controllers\BasketController@guncelle')->name('basket.guncelle');
+
+});
+Route::get('/token', function (Request $request) {
+    $token = $request->session()->token();
+ 
+    $token = csrf_token();
+ 
+    // ...
+});
 
 Route::group(['middleware'=>'auth'], function(){
     Route::get('/odeme', 'App\Http\Controllers\PaymentController@payment')->name('payment');

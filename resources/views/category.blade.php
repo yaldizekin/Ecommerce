@@ -61,10 +61,9 @@
             </div>
             <div class="col-md-9">
                 <div class="products bg-content">
-                    Sırala
-                    <a href="#" class="btn btn-default">Çok Satanlar</a>
-                    <a href="#" class="btn btn-default">Yeni Ürünler</a>
-                    <hr>
+                   
+                
+                
                     <div class="row">
                         @foreach($products as $product)
 
@@ -74,9 +73,10 @@
                             <p class="price">{{$product->price}}</p>
                             <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
                         </div>
+                       
                         @endforeach
                     </div>
-                    {{products->links()}}
+                    {{$products->links()}}
                 </div>
             </div>
         </div>
