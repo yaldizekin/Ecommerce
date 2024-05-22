@@ -25,7 +25,7 @@ class UserController extends Controller
             'password'=>'required']);
 
 
-        if (auth()->attempt(['email'=> request('email'), 'password'=>request('password')], request()->has('rememberMe')))
+        if (auth()->attempt(['email'=> request('email'), 'password'=>request('password'), 'is_active' => 1], request()->has('rememberMe')))
             {
                 request()->session()->regenerate();
                 return redirect()->intended('/');    

@@ -19,7 +19,8 @@ class User extends Authenticatable
         'email',
         'password',
         'activation_code',
-        'is_active'
+        'is_active',
+        'is_admin'
     ];
 
     protected $hidden = [
@@ -32,7 +33,7 @@ class User extends Authenticatable
     }
     public function detail(){
 
-        return $this->hasOne(UserDetail::class);
+        return $this->hasOne(UserDetail::class)->withDefault();
      
      }
    
