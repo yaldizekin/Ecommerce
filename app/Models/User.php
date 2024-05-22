@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Models\UserDetail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -29,5 +30,10 @@ class User extends Authenticatable
     public function getAuthPassword() {
         return $this->password;
     }
+    public function detail(){
+
+        return $this->hasOne(UserDetail::class);
+     
+     }
    
 }

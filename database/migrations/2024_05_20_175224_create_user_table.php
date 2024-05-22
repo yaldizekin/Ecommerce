@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('activation_code')->nullable();
             $table->rememberToken();
             $table->boolean('is_active')->default(0);
+            $table->boolean('is_admin')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();

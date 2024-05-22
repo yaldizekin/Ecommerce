@@ -5,7 +5,13 @@ use Illuminate\Http\Request;
 
 Route::namespace('App\Http\Controllers\Yonetim')->group(function(){
     Route::prefix('yonetim')->group(function(){
-        Route::get('/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+        Route::match(['get','post'],'/oturumac','KullaniciController@oturumac')->name('yonetim.oturumac');
+        Route::redirect('/','/yonetim/oturumac');
+        Route::get('/oturumukapat','KullaniciController@oturumukapat')->name('yonetim.oturumukapat');
+        Route::group(['middleware'=>'auth'], function(){
+        Route::get('/anasayfa','AnasayfaController@index')->name('yonetim.anasayfa');
+    });
+        
     });
 });
 
@@ -24,18 +30,14 @@ Route::delete('/bosalt', 'App\Http\Controllers\BasketController@empty')->name('b
 Route::patch('/guncelle/{rowid}', 'App\Http\Controllers\BasketController@guncelle')->name('basket.guncelle');
 
 });
-Route::get('/token', function (Request $request) {
-    $token = $request->session()->token();
- 
-    $token = csrf_token();
- 
-    // ...
-});
+
+Route::get('/odeme', 'App\Http\Controllers\PaymentController@index')->name('payment');
+Route::post('/odeme', 'App\Http\Controllers\PaymentController@odemeyap')->name('odemeyap');
+
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/odeme', 'App\Http\Controllers\PaymentController@payment')->name('payment');
-    Route::get('/siparisler', 'App\Http\Controllers\OrderController@order')->name('order');
-    Route::get('/siparisler/{id}', 'App\Http\Controllers\OrderController@detail')->name('card');
+    Route::match(['get','post'],'/siparisler', 'App\Http\Controllers\OrderController@siparisler')->name('siparisler');
+    Route::match(['get','post'],'/siparisler/{id}', 'App\Http\Controllers\OrderController@detail')->name('card');
 });
 
 Route::group(['prefix'=>'kullanici'], function(){

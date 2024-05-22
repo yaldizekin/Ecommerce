@@ -19,5 +19,9 @@ public function products(){
 
 }
 
+public function detail(){
+   return $this->hasOne('App\Models\UserDetail');
+  }
+
 
 }

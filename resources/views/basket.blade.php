@@ -58,7 +58,7 @@
                 {{method_field('DELETE')}}
                 <input type="submit" class="btn btn-danger btn-xs" value="Sepeti Boşalt">
                 </form>
-                <a href="#" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
+                <a href="{{route('payment')}}" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
             </div>
             @else 
             <p>Sepetiniz boş.</p>

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function Order(){
+    public function Siparisler(){
 
-        return view ('Order');
+        return view ('siparisler');
 
     }
     public function Detail(){

@@ -10,4 +10,10 @@ class Basket extends Model
    protected $table = 'basket';
    
    protected $guarded=[];
+
+   
+   public function Order() {
+      return $this->hasOne('App\Models\Order');
+      
+  }
 }

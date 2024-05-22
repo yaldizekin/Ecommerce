@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Models\UserDetail;
 
 
 class UserController extends Controller
@@ -64,6 +65,7 @@ class UserController extends Controller
             'is_active' =>0
              
         ]);
+        $user->detail()->save(new UserDetail());
 
         Mail::to(request('email'))->send(new UserRegisterMail($user));
 
