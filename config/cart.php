@@ -58,7 +58,8 @@ return [
 
         'decimals' => 2,
 
-        'decimal_point' => '.'
+        'decimal_point' => '.',
+        'thousand_seperator'=>' '
 
     ],
 

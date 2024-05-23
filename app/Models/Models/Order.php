@@ -12,9 +12,8 @@ class Order extends Model
 
     protected $table ='order';
 
-    protected $guarded;
-
-
+    protected $fillable = ['basket_id','price','bank','taksit','situation'];
+    
     public function Basket() {
         return $this->belongsTo('App\Models\Basket');
         

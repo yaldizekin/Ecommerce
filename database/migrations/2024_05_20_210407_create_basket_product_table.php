@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('basket_id');
             $table->unsignedInteger('product_id');
             $table->integer('piece');
-            $table->decimal('price',5,2);
+            $table->decimal('price',10,2);
             $table->string('situation',30);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));

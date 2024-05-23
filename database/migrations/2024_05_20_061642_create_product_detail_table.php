@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('featured')->default(0);
             $table->boolean('bestseller')->default(0);
             $table->boolean('discounted')->default(0);
+            $table->string('product_img');
             
         });
     }

@@ -1,14 +1,14 @@
 @extends('yonetim.layouts.master')
-@section('title', 'Yönetim Anasayfa')
+@section('title', 'Ürün Anasayfa')
 
 
 @section('content')
-<h4>Kategori yönetim</h4>
+<h4>Sipariş yönetim</h4>
 
 <h1 class="sub-header">
                     <div class="btn-group pull-right" role="group" aria-label="Basic example">
                       
-                        <a href="{{route('yonetim.kategori.yeni')}}" class="btn btn-primary">Yeni</a>
+                        <a href="{{route('yonetim.urun.yeni')}}" class="btn btn-primary">Yeni</a>
                     </div>
                  
                 </h1>
@@ -17,9 +17,11 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Slug</th>
-                                <th>Kategori Adı</th>
-                                <th>Kayıt tarihi</th>
+                                <th>Kullanıcı</th>
+                                <th>Sipariş Kodu</th>
+                                <th>Tutar</th>
+                                <th>Durum</th>
+                                <th>Sipariş tarihi</th>
 
 
                                 <th></th>
@@ -29,22 +31,23 @@
                             @foreach($list as $entry)
                             <tr>
                                 <td>{{$entry->id}}</td>
-                                <td>{{$entry->slug}}</td>
-                                <td>{{$entry->category_name}}</td>
-                                <td>{{$entry->created_at}}
-                                
+                                <td>{{$entry->basket->user_id}}</td>
+                                <td>SP-{{$entry->id}}</td>
+                                <td>{{$entry->price}}</td>
+                                <td>{{$entry->situation}}</td>
+                                <td>{{$entry->created_at}}</td>
+
                                 <td style="width: 100px">
-                                    <a href="{{route('yonetim.kategori.duzenle', $entry->id)}}" class="btn btn-xs btn-success" data-toggle="duzenle" data-placement="top" title="Duzenle">
+                                    <a href="{{route('yonetim.siparis.duzenle', $entry->id)}}" class="btn btn-xs btn-success" data-toggle="duzenle" data-placement="top" title="Duzenle">
                                         <span class="fa fa-pencil"></span>
                                     </a>
-                                    <a href="{{route('yonetim.kategori.sil', $entry->id)}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
+                                    <a href="{{route('yonetim.siparis.sil', $entry->id)}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
                                         <span class="fa fa-trash"></span>
                                     </a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-                     
                     </table>
                     {{$list->links()}}
                 </div>

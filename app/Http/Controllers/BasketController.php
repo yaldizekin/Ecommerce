@@ -21,7 +21,7 @@ class BasketController extends Controller
     public function Add(){
 
         $product=Product::find(request('id'));
-        $cartItem= Cart::add($product->id, $product->product_name, 1, $product->price);
+        $cartItem= Cart::add($product->id, $product->product_name, 1, $product->price,['slug'=>$product->slug]);
 
         if (auth()->check()) {
             $active_basket_id = session('active_basket_id');

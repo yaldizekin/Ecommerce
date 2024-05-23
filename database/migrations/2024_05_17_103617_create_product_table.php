@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('product_name');
             $table->text('description');
-            $table->decimal('price',6,3);
+            $table->decimal('price',9,3);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
             $table->integer('category_id')->nullable(); 
